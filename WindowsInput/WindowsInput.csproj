@@ -57,6 +57,8 @@
     <Compile Include="InputSimulator.cs" />
     <Compile Include="MouseButton.cs" />
     <Compile Include="MouseSimulator.cs" />
+    <Compile Include="Native\CursorFlag.cs" />
+    <Compile Include="Native\CURSORINFO.cs" />
     <Compile Include="Native\NativeMethods.cs" />
     <Compile Include="Native\HARDWAREINPUT.cs" />
     <Compile Include="IInputDeviceStateAdaptor.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Native\MouseFlag.cs" />
     <Compile Include="Native\MOUSEINPUT.cs" />
     <Compile Include="Native\MOUSEKEYBDHARDWAREINPUT.cs" />
+    <Compile Include="Native\Point.cs" />
     <Compile Include="WindowsInputDeviceStateAdaptor.cs" />
     <Compile Include="WindowsInputMessageDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

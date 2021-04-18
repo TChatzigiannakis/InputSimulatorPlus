@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using WindowsInput.Native;
 
 namespace WindowsInput
@@ -152,6 +153,47 @@ namespace WindowsInput
         {
             Int16 result = NativeMethods.GetKeyState((UInt16)keyCode);
             return (result & 0x01) == 0x01;
+        }
+
+        /// <summary>
+        /// The cursor state. CursorFlag is a part of CURSORINFO structure (DWORD flags) (winuser.h). (See: https://docs.microsoft.com/ru-ru/windows/win32/api/winuser/ns-winuser-cursorinfo)
+        /// </summary>
+        /// <returns>
+        /// <c>Hidden</c> if the cursor is hidden.
+        /// <c>Visible</c> if the cursor is showing.
+        /// <c>Suppressed</c>  Windows 8: The cursor is suppressed. This flag indicates that the system is not drawing the cursor because the user is providing input through touch or pen instead of the mouse. 
+        /// </returns>
+        public CursorFlag GetCursorFlag()
+        {
+	        return GetCursorInfo().flags;
+        }
+
+        /// <summary>
+        /// The structure that receives the screen coordinates of the cursor.
+        /// </summary>
+        /// <returns>
+        /// <c>Point</c> The X and Y coordinates of cursor position on screen.
+        /// </returns>
+        public Point GetCursorScreenCoordinates()
+        {
+	        return GetCursorInfo().ptScreenPos;
+        }
+
+        /// <summary>
+        /// Contains global cursor information. See: (https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-cursorinfo)
+        /// </summary>
+        /// <returns>
+        /// <c>cbSize</c> The size of the structure, in bytes.
+        /// <c>flags</c> The cursor state. This parameter can be one of the following values.
+        /// <c>hCursor</c> A handle to the cursor.
+        /// <c>ptScreenPos</c> The structure that receives the screen coordinates of the cursor.
+        /// </returns>
+        private static CURSORINFO GetCursorInfo()
+        {
+	        CURSORINFO cursorInfo = new CURSORINFO();
+	        cursorInfo.cbSize = Marshal.SizeOf(cursorInfo);
+	        NativeMethods.GetCursorInfo(ref cursorInfo);
+	        return cursorInfo;
         }
     }
 }
