@@ -106,5 +106,13 @@ namespace WindowsInput.Native
         /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern UInt32 MapVirtualKey(UInt32 uCode, UInt32 uMapType);
+
+        /// <summary>
+        /// Retrieves information about the global cursor.
+        /// </summary>
+        /// <param name="cursorInfo"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)] public static extern bool GetCursorInfo(ref CURSORINFO cursorInfo);
     }
 }

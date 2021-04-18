@@ -51,5 +51,15 @@ namespace WindowsInput
         /// 	<c>true</c> if the toggling key is toggled on (in-effect); otherwise, <c>false</c>.
         /// </returns>
         bool IsTogglingKeyInEffect(VirtualKeyCode keyCode);
+
+        /// <summary>
+        /// Gets the current state of the mouse cursor.
+        /// </summary>
+        CursorFlag GetCursorFlag();
+
+        /// <summary>
+        /// Gets the current screen coordinates of the mouse cursor.
+        /// </summary>
+        Point GetCursorScreenCoordinates();
     }
 }
